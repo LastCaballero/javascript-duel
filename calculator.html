@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            margin: 45px;
+            font-family: sans-serif;
+        }
+        button {
+            font-size: 55px;
+            width: 140px;
+            border-radius: 10%;
+            background-color:darkcyan;
+        }
+        td {
+            padding: 5px;
+        }
+        p.display{
+            background-color: bisque;
+            text-align: right;
+            padding: 12px;
+            height: 70px;
+            line-height: 70px;
+            font-size: 60px;
+            border-radius: 12px;
+            margin: 0px;
+        }
+    </style>
+    <script>
+        function printToDisplay ( value ) {
+            let display = document.getElementById("display")
+            display.innerHTML = display.innerHTML + value
+
+        }
+        function undoAtDisplay () {
+            let display = document.getElementById("display")
+            display.innerHTML = display.innerHTML.substring(0, display.innerHTML.length - 1)
+        }
+        function showResult () {
+            let display = document.getElementById("display")
+            let result = eval(display.innerHTML)
+            result = Array.from(result).find(x => x = ".") == null ? result : parseFloat(result)
+            display.innerHTML = result
+        }
+        
+    </script>
+</head>
+
+<body>
+
+    <table align="center">
+        <tr><td colspan="4">
+            <p class="display" id="display"></p>
+        </td></tr>
+        <tr>
+            <td><button onclick="printToDisplay(this.innerHTML)">(</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">)</button></td>
+            <td><button style="font-weight: bold;" onclick='document.getElementById("display").innerHTML=""'>C</button></td>
+            <td><button onclick="undoAtDisplay()">&#8606</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="printToDisplay(this.innerHTML)">1</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">2</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">3</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">+</button></td>
+        </tr>8606
+        <tr>
+            <td><button onclick="printToDisplay(this.innerHTML)">4</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">5</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">6</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="printToDisplay(this.innerHTML)">7</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">8</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">9</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="showResult()" style="font-weight: bold;">=</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">0</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">.</button></td>
+            <td><button onclick="printToDisplay(this.innerHTML)">/</button></td>
+        </tr>
+        
+    </table>
+
+</body>
+
+</html>
