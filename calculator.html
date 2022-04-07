@@ -43,7 +43,6 @@
         function showResult () {
             let display = document.getElementById("display")
             let result = eval(display.innerHTML)
-            result = Array.from(result).find(x => x = ".") == null ? result : parseFloat(result)
             display.innerHTML = result
         }
         
@@ -67,7 +66,7 @@
             <td><button onclick="printToDisplay(this.innerHTML)">2</button></td>
             <td><button onclick="printToDisplay(this.innerHTML)">3</button></td>
             <td><button onclick="printToDisplay(this.innerHTML)">+</button></td>
-        </tr>8606
+        </tr>
         <tr>
             <td><button onclick="printToDisplay(this.innerHTML)">4</button></td>
             <td><button onclick="printToDisplay(this.innerHTML)">5</button></td>
