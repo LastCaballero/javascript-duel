@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html style="height: 100%">
+
+<head>
+	<meta charset="utf-8">
+	<title>Clock</title>
+	<style>
+		h1.clock {
+			font-family: monospace ;
+			font-size: 120px ;
+		}
+	</style>
+	<script>
+		function changeTime () {
+			let time = new Date() ;
+			let hrs = time.getHours();
+			let mins = time.getMinutes();
+			let secs = time.getSeconds();
+			hours.innerHTML = String(hrs).length == 1 ? "0" + hrs : hrs ;
+			minutes.innerHTML = String(mins).length == 1 ? "0" + mins : mins ;
+			seconds.innerHTML = String(secs).length == 1 ? "0" + secs : secs ;
+		}
+	</script>
+</head>
+
+<body style="height: 100%; margin: 0">
+	<div style="display: flex; align-items: center; justify-content: center; height: 100%">
+		<h1 class="clock" id="hours">00</h1>
+		<h1 class="clock">:</h1>
+		<h1 class="clock" id="minutes">00</h1>
+		<h1 class="clock">:</h1>
+		<h1 class="clock" id="seconds">00</h1>
+	</div>
+	<script>
+		const hours = document.getElementById('hours');
+		const minutes = document.getElementById('minutes');
+		const seconds = document.getElementById('seconds');
+		setInterval(changeTime, 1000) ;	
+	</script>
+</body>
+
+</html>
