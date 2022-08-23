@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fibbonacci-Numbers</title>
+<script>
+function clean_box () {
+	while ( box.childElementCount != 0 ) {
+		box.childNodes.forEach( x => x.remove() ) ;
+	}
+}
+
+function create_element ( n ) {
+	let p = document.createElement("p");
+	let t = document.createTextNode(n);
+	p.appendChild(t);
+	box.appendChild(p);
+}
+
+function fibbo ( ) {
+	clean_box() ;
+	let i = input.value ;
+	if ( i == 0 ) { i = 100 ; }
+	let a = 1 ;
+	let b = 2 ;
+	let c = a + b ;
+	create_element( a ) ;	
+	while ( c <= i ) {
+		a = b ;
+		b = c ;
+		c = a + b ;
+		create_element( a ) ;
+	}
+}
+
+</script>
+<style>
+	body {
+		margin: 45px ;
+		font-family: sans-serif ;
+	}
+	p {
+		width: 200px;
+		float: left ;
+		border: 1px solid black ;
+		border-radius: 5px ;
+		padding: 5px ;
+		margin: 5px ;
+		text-align: center ;
+	}
+</style>
+</head>
+
+<body>
+	<div style="display: flex; justify-content: center; margin-bottom: 20px">
+		<input type="text" id="number" />
+		<button onclick="fibbo()">Number</button>
+	</div>
+	
+	<div id="numbers"></div>
+
+<script>
+let box = document.getElementById("numbers");
+let input = document.getElementById("number");
+</script>
+
+
+
+</body>
+</html>
