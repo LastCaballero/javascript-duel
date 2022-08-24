@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mighty FoorEach</title>
+</head>
+<style>
+    body {
+        margin: 45px;
+        font-family: sans-serif;
+    }
+</style>
+<script>
+    let ar = new Array(100);
+    function generate_paras(what) {
+        ar.fill(what)
+        ar.forEach(x => {
+            let p = document.createElement("p") ;
+            p.appendChild(document.createTextNode(what)) ;
+            p.style.margin = "5px" ;
+            p.setAttribute("onmouseover","this.style.fontSize='30px'") ;
+            box.appendChild(p) ;
+        })
+
+    }
+</script>
+
+<body>
+    <p>
+        <input type="text" name="" id="inp"><button onclick="generate_paras(inp.value)">fill</button>
+    </p>
+    <div id="main" style="display: flex; align-items: flex-start;justify-content: space-between;"></div>
+
+    <script>
+        const box = document.getElementById("main");
+    </script>
+
+
+
+
+
+</body>
+
+</html>
