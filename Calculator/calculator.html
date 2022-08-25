@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .display {
+            text-align: right;
+            font-size: 40px;
+            line-height: 80px;
+            height: 80px;
+            font-family: sans-serif;
+            padding: 30px;
+            border: 4px outset navy;
+            border-radius: 10px;
+
+        }
+
+        button {
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 40px;
+            height: 85px;
+        }
+    </style>
+    <script>
+        function update_display(value) {
+            display.innerHTML = display.innerHTML + value;
+        }
+        function show_result() {
+            display.innerHTML = eval(display.innerHTML);
+        }
+    </script>
+</head>
+
+<body>
+    <div style="width: 800px;">
+        <p class="display" id="display"></p>
+    </div>
+    <div style="width: 800px; display: grid; gap: 10px;">
+        <button style="grid-row: 1;" onclick="update_display(this.innerHTML)">(</button>
+        <button style="grid-row: 1;" onclick="update_display(this.innerHTML)">)</button>
+        <button style="grid-row: 1; grid-column: span 2;font-weight: 900;" onclick='display.innerHTML=""'>clear</button>
+        <button style="grid-row: 2;" onclick="update_display(this.innerHTML)">1</button>
+        <button style="grid-row: 2;" onclick="update_display(this.innerHTML)">2</button>
+        <button style="grid-row: 2;" onclick="update_display(this.innerHTML)">3</button>
+        <button style="grid-row: 2;" onclick="update_display(this.innerHTML)">+</button>
+        <button style="grid-row: 3;" onclick="update_display(this.innerHTML)">4</button>
+        <button style="grid-row: 3;" onclick="update_display(this.innerHTML)">5</button>
+        <button style="grid-row: 3;" onclick="update_display(this.innerHTML)">6</button>
+        <button style="grid-row: 3;" onclick="update_display(this.innerHTML)">-</button>
+        <button style="grid-row: 4;" onclick="update_display(this.innerHTML)">7</button>
+        <button style="grid-row: 4;" onclick="update_display(this.innerHTML)">8</button>
+        <button style="grid-row: 4;" onclick="update_display(this.innerHTML)">9</button>
+        <button style="grid-row: 4;" onclick="update_display(this.innerHTML)">*</button>
+        <button style="grid-row: 5;font-weight: 900;" onclick="show_result()">=</button>
+        <button style="grid-row: 5;" onclick="update_display(this.innerHTML)">.</button>
+        <button style="grid-row: 5;" onclick="update_display(this.innerHTML)">0</button>
+        <button style="grid-row: 5;" onclick="update_display(this.innerHTML)">/</button>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+    </script>
+</body>
+
+</html>
