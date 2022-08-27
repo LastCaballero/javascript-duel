@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tabata</title>
+
+<style>
+	body, html  {
+		height: 100% 
+	}
+	body {
+		font-family: sans-serif ;
+		margin: 0 ;
+		padding: 0 ;
+		display: flex ;
+		justify-content: center ;
+		align-items: center ;
+		flex-direction: column ;
+	}
+	p {
+		font-family: monospace ;
+	}
+	button, p {
+		font-size: 44px ;
+		font-weight: 900 ;
+	}
+	button {
+		margin-bottom: 50px ;
+		padding: 10px ;
+		border-radius: 15px ;
+	}
+</style>
+
+<script>
+let rounds = 0 ;
+let timeout20 ;
+
+function start_20_seconds () {
+	let i = 20 ;
+	if ( timeout20 == null && rounds <= 8 ){
+		timeout20 = setInterval(() => {
+			nump.innerHTML = i-- ;
+			if ( i == 0 ) {
+				nump.innerHTML = 20 ;
+				clearInterval( timeout20 );
+				timeout20 = null ;
+			}
+		} ,1000 ) ;
+		rounds++ ; 
+		if ( rounds < 9 ){ 
+			rndp.innerHTML = 'Rounds: ' + rounds ; 
+			set_action() ;
+			setTimeout(start_20_seconds , 20300);
+		} 	
+	} else {
+			action.innerHTML = "FINISHED" ;
+			rndp.innerHTML = "FINISHED"
+	}
+
+}
+
+let act = 'fight' ;
+function set_action () {
+	act = act == 'fight' ? 'pause' : 'fight' ;
+	action.innerHTML = act ;
+}
+
+</script>
+
+</head>
+
+<body>
+	<button onclick="start_20_seconds()">Start / Resume</button>
+	<p id="numbers">&nbsp;</p>
+	<p id="round">not started</p>
+	<p id="action">&nbsp;</p>
+
+<script>
+	const nump = document.getElementById('numbers');
+	const rndp = document.getElementById('round');
+	const actp = document.getElementById('action');
+
+</script>
+
+</body>
+</html>
