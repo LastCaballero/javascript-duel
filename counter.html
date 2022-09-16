@@ -9,110 +9,74 @@
         body {
             font-family: sans-serif;
             margin: 45px;
+            display: flex;
+            justify-content: center;
         }
-
         div.main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+        
         }
-        div.counter{
-            display: flex;
-            align-items: center ;
-            justify-content: center;
+        div.main p {
+            text-align: center;
         }
-        .member {
-            margin-left: 5px ;
+        button {
+            width: 120px ;
+            height: 80px ;
+            font-size: 45px;
+            border-radius: 20px ;
+            margin-left: 5px;
             margin-right: 5px ;
         }
+
+        
        
     </style>
     <script>
-        class OwnDiv extends HTMLDivElement {
-            tp ;
-            np ;
-            ab ;
-            mb ;
-            constructor(title) {
-                super();
-                this.className="counter" ;
-                this.tp = new TextPara(title) ;
-                this.np = new NumPara() ;
-                this.ab = new AddButton(this.np) ;
-                this.mb = new MinButton(this.np) ;
-                [this.tp,this.np,this.ab,this.mb].forEach(e => this.appendChild(e));
-            }
-
+        function button_plus( button ){
+            button.innerHTML = Number.parseInt(button.innerHTML) + 1 ;
         }
-        class TextPara extends HTMLParagraphElement {
-            constructor(title) {
-                super();
-                this.innerHTML = title;
-            }
-        }
-        class NumPara extends HTMLParagraphElement {
-            num = 0;
-            constructor() {
-                super();
-                this.className="member" ;
-                this.innerHTML = this.num;
-            }
-            add() {
-                this.num++;
-                this.innerHTML = this.num;
-            }
-            min() {
-                this.num--;
-                this.innerHTML = this.num;
-            }
-        }
-        class AddButton extends HTMLButtonElement {
-            para;
-            constructor(p) {
-                super();
-                this.className="member" ;
-                this.para = p;
-                this.innerHTML = "+";
-                this.onclick = () => { p.add() }
-            }
-
-        }
-        class MinButton extends HTMLButtonElement {
-            para;
-            constructor(p) {
-                super();
-                this.className="member" ;
-                this.para = p;
-                this.innerHTML = "-";
-                this.onclick = () => { p.min() }
-            }
-
-        }
-        customElements.define('own-div', OwnDiv, { extends: 'div' });
-        customElements.define('num-para', NumPara, { extends: 'p' });
-        customElements.define('text-para', TextPara, { extends: 'p' });
-        customElements.define('add-but', AddButton, { extends: 'button' });
-        customElements.define('min-but', MinButton, { extends: 'button' });
-
-        function add_counter() {
-            box.appendChild(new OwnDiv(inp.value));
-            
-
+        function change_label ( label ) {
+                label.innerHTML = prompt("Neue Bezeichnung eingeben:") ;
         }
     </script>
 </head>
 
 <body>
-    <div style="display: flex; justify-content: center;">
-        <span>counter-name</span><input type="text" id="inp" size="20" style="margin-left:10px;margin-right:10px">
-        <button onclick="add_counter()">add counter</button>
+    <div class="main">
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <button onclick="button_plus(this)">0</button>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
+            <p onclick="change_label(this)">item</p>
     </div>
-    <div id="main" class="main"></div>
-    <script>
-        const box = document.getElementById('main');
-        const inp = document.getElementById('inp');
-
-    </script>
 </body>
 
 </html>
