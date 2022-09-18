@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Trainer</title>
+    <style>
+        body {
+            margin: 45px ;
+            font-family: sans-serif;
+        }
+
+        div.main {
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        div.main div {
+            display: flex;
+            justify-content: center;
+            align-items:stretch;
+            width: 50%;
+        }
+        div.main div p {
+            height: 45px;
+            margin-left: 10px ;
+            margin-right: 10px ;
+        }
+
+
+    </style>
+    <script>
+        function create_left_box () {
+            let p = document.createElement("p") 
+            p.innerHTML = produce_math() 
+            return p
+        }
+        function create_cent_box () {
+            let p = document.createElement("p") 
+            let inp = document.createElement("input")
+            inp.setAttribute('type','text')
+            p.appendChild(inp)
+            return p
+        }
+        function create_right_box () {
+            let p = document.createElement("p") 
+            let but = document.createElement("button")
+            but.innerHTML = "submit"
+            p.appendChild(but)
+            return p
+        }
+
+        function create_result_box () {
+            let p = document.createElement("p")
+            p.style.width="100px"
+            p.style.textAlign="right"
+            return p ;
+        }
+
+        function create_div () {
+            let left    = create_left_box()
+            let center_p  = create_cent_box()
+            let but   = create_right_box()
+            let result  = create_result_box()
+            let div = document.createElement('div')
+
+            but.onclick = () => { 
+                if ( eval(center_p.firstChild.value) == eval(left.innerHTML) ) {
+                    result.innerHTML = "okay"
+                } else {
+                    result.innerHTML = "falsch"
+                }
+            } 
+
+            div.appendChild(left)
+            div.appendChild(center_p)
+            div.appendChild(but)
+            div.appendChild(result)
+
+            return div 
+        }
+
+        function append_divs ( n ) {
+            for(let i = 0 ; i < n ; i++){
+                main.appendChild(create_div())
+            }
+        }
+        
+        
+
+        function produce_math() {
+            let signs = ['+', '-', '*', '/']
+            let op = signs[Math.floor(Math.random() * 4)]
+            let target = 100
+            let n1 = Math.round(Math.random() * target)
+            let n2 = Math.round(Math.random() * target)
+            return n1 + ' ' + op + ' ' + n2
+        }
+    </script>
+</head>
+
+<body>
+    
+    <div class="main" id="main">
+            <div class="first">
+                <p>test</p>
+                <p><input type="text" title="you can change this value" id="inp_n"></p>
+                <p>
+                    <button onclick="append_divs(how_many.value)">Produce</button>
+                </p>
+                
+            </div>
+    </div>
+    <script>
+        const main = document.getElementById('main')
+        const how_many = document.getElementById('inp_n')
+        how_many.value = 10
+    </script>
+    
+</body>
+
+</html>
