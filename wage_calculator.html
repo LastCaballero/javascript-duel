@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wage-Calculator</title>
+    <style>
+        body {
+            margin: 45px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+
+        }
+
+        div.main {
+            width: 50%;
+            display: grid;
+            grid-template-columns: 70% 30%;
+            gap: 10px;
+        }
+
+        p.right_p {
+            text-align: right;
+        }
+
+        p,
+        h3 {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        h3 {
+            text-align: right;
+        }
+    </style>
+    <script>
+        function change_right(range) {
+            range.nextElementSibling.innerHTML = range.value
+        }
+    </script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Wage Calculator</h1>
+    <div style="display: flex;justify-content: center">
+        <div class="main">
+            <h3>yearly wage</h3>
+            <p>&nbsp;</p>
+            <input type="range" step="1000" min="20000" max="60000" oninput="change_right(this);i_m.value=this.value/12;p_m.innerHTML=(this.value/12).toFixed(2);i_h.value=this.value/12/170;p_h.innerHTML=(this.value/12/170).toFixed(2)" id="i_anno">
+            <p class="right_p" id="p_anno">40000</p>
+            
+            <h3>monthly wage</h3>
+            <p>&nbsp;</p>
+            <input type="range" step="50" min="1800" max="5000" oninput="change_right(this);i_a.value=this.value*12;p_a.innerHTML=(this.value*12).toFixed(2);i_h.value=this.value/170;p_h.innerHTML=(this.value/170).toFixed(2)" id="i_month">
+            <p class="right_p" id="p_month">1600</p>
+            
+            <h3>wage per hour</h3>
+            <p>&nbsp;</p>
+            <input type="range" step="0.1" min="12" max="29.4" oninput="change_right(this);i_a.value=this.value*12*170;p_a.innerHTML=(this.value*12*170).toFixed(2);i_m.value=this.value*170;p_m.innerHTML=(this.value*170).toFixed(2)" id="i_hour">
+            <p class="right_p" id="p_hour">22</p>
+        </div>
+    </div>
+    <script>
+        const i_a = document.getElementById('i_anno')
+        const i_m = document.getElementById('i_month')
+        const i_h = document.getElementById('i_hour')
+        const p_a = document.getElementById('p_anno')
+        const p_m = document.getElementById('p_month')
+        const p_h = document.getElementById('p_hour')
+    </script>
+
+</body>
+
+</html>
