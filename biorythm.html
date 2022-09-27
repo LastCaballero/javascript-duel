@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biorhythmus-Forecast</title>
+    <style>
+        body {
+            margin: 45px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        div.show_board,
+        div.header {
+            display: flex;
+        }
+
+        div.header p {
+            font-weight: 900;
+        }
+
+        p.pp {
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: right;
+            width: 120px;
+        }
+    </style>
+
+    <script>
+        function physio(days) {
+            return Math.sin((2 * Math.PI) * days / 23).toFixed(2)
+        }
+        function emo(days) {
+            return Math.sin((2 * Math.PI) * days / 28).toFixed(2)
+        }
+        function get_intelligence(days) {
+            return Math.sin((2 * Math.PI) * days / 33).toFixed(2)
+        }
+        function date_difference(date2, date1) {
+            return Number.parseInt((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
+        }
+        function add_a_day(date, days) {
+            return date.setDate(date.getDate() + days)
+        }
+        let days_difference
+        let a, b, c
+        function create_data_div(dat, days, ph, em, ii) {
+            let div = document.createElement('div')
+            div.className = "show_board"
+            let p_date = document.createElement('p')
+            let p_days = document.createElement('p')
+            let p_ph = document.createElement('p')
+            let p_em = document.createElement('p')
+            let p_in = document.createElement('p')
+
+            p_date.className = "pp"
+            p_days.className = "pp"
+            p_ph.className = "pp"
+            p_em.className = "pp"
+            p_in.className = "pp"
+
+            a = dat.getDate().toString().length == 1 ? "0" + dat.getDate() : dat.getDate().toString()
+            b = (dat.getMonth() + 1).toString().length == 1 ? "0" + (dat.getMonth() + 1) : (dat.getMonth() + 1).toString()
+            c = dat.getFullYear()
+            p_date.innerHTML = a + "." + b + "." + c
+            p_days.innerHTML = days
+            p_ph.innerHTML = ph
+            p_em.innerHTML = em
+            p_in.innerHTML = ii
+            div.append(p_date, p_days, p_ph, p_em, p_in)
+            return div
+        }
+
+        function do_the_loop(date_from_input) {
+            let now = new Date()
+
+            let diff
+            let ph, em, intel
+            let data_div
+
+            days = date_difference(now, date_from_input)
+            ph = physio(days)
+            em = emo(days)
+            intel = get_intelligence(days)
+            data_div = create_data_div(now, days, ph, em, intel)
+            add_box.appendChild(data_div)
+
+            for (i = 0; i < 60; i++) {
+                now.setDate(now.getDate() + 1)
+                days = date_difference(now, date_from_input)
+                ph = physio(days)
+                em = emo(days)
+                intel = get_intelligence(days)
+                data_div = create_data_div(now, days, ph, em, intel)
+                add_box.appendChild(data_div)
+            }
+        }
+
+        function remove_values() {
+            while (add_box.childNodes.length != 0) {
+                add_box.childNodes.forEach(v => v.remove())
+            }
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+   
+    <p>
+        <label for="inp_geburt">Geburtsdatum: </label>
+        <input type="date" id="inp_date" name="inp_geburt" title="Geburtsdatum auswählen" />
+        <button onclick="do_the_loop(new Date(date_input.value))">calculate</button>
+        <button onclick="remove_values()">remove values</button>
+    </p>
+    <div class="header">
+        <p class="pp">date</p>
+        <p class="pp">day diff</p>
+        <p class="pp">physical</p>
+        <p class="pp">emmotional</p>
+        <p class="pp">intelligence</p>
+    </div>
+    <div id="add_box"></div>
+    <script>
+        let add_box = document.getElementById('add_box')
+        let date_input = document.getElementById('inp_date')
+    </script>
+
+</body>
+
+</html>
