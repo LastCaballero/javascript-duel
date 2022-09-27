@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biorhythmus-Forecast</title>
+    <title>Biorhythm Forecast</title>
     <style>
         body {
             margin: 45px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
-
+        p.first {
+            display: flex;
+        }
+        label,input,button {
+            margin-left: 5px ;
+            margin-right: 5px ;
+        }
         div.show_board,
         div.header {
             display: flex;
@@ -112,8 +118,8 @@
 </head>
 
 <body>
-   
-    <p>
+   <h1>Biorhythm Forecast</h1>
+    <p class="first">
         <label for="inp_geburt">Geburtsdatum: </label>
         <input type="date" id="inp_date" name="inp_geburt" title="Geburtsdatum auswählen" />
         <button onclick="do_the_loop(new Date(date_input.value))">calculate</button>
