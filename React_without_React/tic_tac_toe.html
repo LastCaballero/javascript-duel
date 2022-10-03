@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - React is really Bullshit :-)</title>
+    <style>
+        
+        body{
+            margin: 80px ;
+            display: flex;
+            align-items: justify;
+            justify-content: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        div#main_box {
+            height: 80px;
+            width: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+        .p_box {
+            border: 1px solid black ;
+            height: 50px;
+            width: 50px;
+            font-size: 40px;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0 ;
+            margin-bottom: 0 ;
+        }
+    </style>
+    <script>
+        let p = new Array(9)
+        let c_o_x = "x"
+        let char
+        function test_for_win () {
+            if(p[0].innerHTML == p[1].innerHTML && p[1].innerHTML == p[2].innerHTML && p[0].innerHTML != "" ){
+                char = p[0].innerHTML
+                return true
+            }
+            else if(p[3].innerHTML == p[4].innerHTML && p[4].innerHTML == p[5].innerHTML && p[3].innerHTML != ""  ){
+                char = p[3].innerHTML
+                return true
+            }
+            else if(p[6].innerHTML == p[7].innerHTML && p[7].innerHTML == p[8].innerHTML && p[6].innerHTML != ""  ){
+                char = p[6].innerHTML
+                return true
+            }
+            else if(p[0].innerHTML == p[4].innerHTML && p[4].innerHTML == p[8].innerHTML && p[0].innerHTML != ""  ){
+                char = p[0].innerHTML
+                return true
+            }
+            else if(p[2].innerHTML == p[4].innerHTML && p[4].innerHTML == p[6].innerHTML && p[2].innerHTML != ""  ){
+                char = p[2].innerHTML
+                return true
+            } else {
+                return false
+            }
+        
+        }
+    </script>
+</head>
+<body>
+    <div id="main_box">
+        <script>
+            let main_box = document.getElementById('main_box')
+            for(let i = 0 ; i < 9 ; i++) {
+                p[i] = document.createElement('p')
+                p[i].className = "p_box"
+                p[i].onclick = () => {
+                    c_o_x == "0" ? c_o_x = "X" : c_o_x = "0" 
+                    p[i].innerHTML = c_o_x
+                    console.log(test_for_win())
+                    if(test_for_win()){
+                        result.innerHTML = `${char} has won...<br>`
+                        result.innerHTML += "I really don´t know why people need react :-)"
+                    }           
+                }
+                main_box.appendChild(p[i])
+            }
+        </script>
+        <p id="result" style="grid-column: 1 / span 3; text-align:center"></p>
+        <script>
+            const result = document.getElementById('result')
+        </script>
+    </div>
+</body>
+</html>
