@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Power => React is Bullshit</title>
+    <style>
+        body {
+            margin: 45px ;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #box1, #box2 {
+            display: flex;
+            justify-content: center;
+            gap: 7px ;
+        }
+        button {
+            font-size: 22px;
+            height: 35px;
+            width: 35px;
+        }
+        p.para {
+            width: 35px;
+            padding: 0;
+            border: 1px solid black ;
+            background-color: black;
+        }
+    </style>
+    <script>
+        let numbers = new Array(10).fill(0)
+        let buttons = new Array(10).fill(1).map( b => document.createElement('button') )
+        buttons.forEach( but => but.innerHTML = 0 )
+        buttons.forEach((but,index) => { but.onclick = () => { numbers[index]++; but.innerHTML=numbers[index] ; change_paras() } })
+
+        
+        let paras = new Array(10).fill(1).map( p => document.createElement('p') )
+        paras.forEach( p => p.className="para" )
+
+        function change_paras () {
+            let max = Math.max.apply(null,numbers)
+            paras.forEach( (p,idx) => { p.style.height = numbers[idx] + 'mm' } )
+        }
+
+    </script>
+</head>
+<body>
+    <h1 style="line-height: 0.9em;">just a demo <br><span style="font-size: 0.4em ;">Nothing better than javascript</span></h1>
+    <p>press the buttons and look. <br>After this look at the javascript code and do the same with react :-)</p>
+    <div id="box1">
+    </div>
+    <script>
+        const box1 = document.getElementById('box1')
+        buttons.forEach(but => box1.append(but))
+    </script>
+    <div id="box2">
+    </div>
+    <script>
+        const box2 = document.getElementById('box2')
+        paras.forEach(p => box2.append(p))
+    </script>
+</body>
+</html>
