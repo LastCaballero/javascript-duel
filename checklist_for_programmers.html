@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmer´s Checklist</title>
+    <style>
+        
+
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+        }
+
+        div.mainbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div.container {
+            width: 50%;
+            display: grid;
+            grid-template-columns: 45% 45% 10%;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        p.left,
+        p.right {
+            padding: 12px;
+            color: cadetblue;
+            font-weight: 900;
+            margin-bottom: 3px;
+            margin-top: 3px;
+        }
+
+        p.right {
+            text-align: right;
+        }
+
+        p#sum {
+            text-align: right;
+            font-weight: 900;
+            font-size: 20px;
+            color: darkslateblue;
+        }
+
+        input {
+            padding: 12px;
+        }
+    </style>
+    <script>
+        function change_p_at_right(range) {
+            range.nextElementSibling.innerHTML = range.value;
+            calculate_sum();
+        }
+        function calculate_sum() {
+            let sum = 0;
+            let p_numbers = document.getElementsByClassName('right');
+            for (let i = 0; i < p_numbers.length; i++) {
+                sum += Number.parseInt(p_numbers.item(i).innerHTML);
+
+            }
+            p_sum.innerHTML = sum;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="mainbox">
+        <h1>Programmer´s CheckList</h1>
+        <div class="container">
+            <p class="left">logical programming structure?</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">short and effective code?</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">code readability</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">variable and function names with sense?</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">able to learn/use new/unknown programming language?</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">ability to work with a similar programming languages already known?</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">ability to define own classes</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">class design</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p class="left">creating own ideas</p>
+            <input type="range" name="" min="1" max="7" onchange="change_p_at_right(this)">
+            <p class="right">0</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p id="sum"></p>
+        </div>
+
+    </div>
+    <script>
+        const p_sum = document.getElementById('sum');
+    </script>
+</body>
+
+</html>
