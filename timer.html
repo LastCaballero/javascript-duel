@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px ;
+        }
+
+        div.main {
+            display: flex;
+            gap: 10px;
+        }
+        div.input {
+            display: flex;
+            gap: 10px ;
+        }
+        p.number {
+            font-size: 55px;
+        }
+
+        p.point {
+            font-size: 55px;
+        }
+    </style>
+    <script>
+        class Seconds {
+            constructor(seconds, min_counter) {
+                this.start = seconds
+                this.seconds = seconds
+                this.min_counter = min_counter
+                this.node = document.createTextNode(this.seconds)
+                this.node.textContent = String(seconds).length == 1 ? '0' + seconds : seconds
+            }
+            set( seconds ) {
+                this.seconds = seconds
+                this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
+            }
+            reset () {
+                clearInterval(this.intervall)
+                this.seconds = 0
+                this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
+            }
+            run() {
+                this.intervall = setInterval(() => {
+                    this.seconds--
+                    this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
+                    if (this.seconds == 0) { 
+                        this.seconds = 60
+                        this.min_counter.down()
+                        if ( this.min_counter.getMinutes() == -1 ) {
+                            this.min_counter.set(0)
+                            this.reset()
+                            result.innerHTML = 'OUT OF TIME'
+                        }
+                    }
+                }, 1000)
+
+            }
+            get() { return this.node }
+        }
+        class Minutes {
+            constructor(minutes) {
+                this.minutes = minutes
+                this.node = document.createTextNode(String(minutes).length == 1 ? '0' + minutes : minutes)
+            }
+            set(minutes) {
+                this.minutes = minutes
+                this.node.textContent = String(this.minutes).length == 1 ? '0' + this.minutes : this.minutes
+            }
+            reset() {
+                this.minutes = 0
+                this.node.textContent = String(this.minutes).length == 1 ? '0' + this.minutes : this.minutes
+            }
+            down() {
+                this.minutes--
+                this.node.textContent = String(this.minutes).length == 1 ? '0' + this.minutes : this.minutes
+            }
+            get() { return this.node }
+            getMinutes() { return this.minutes }
+            push_result_box (res_box) {
+                this.resultbox = res_box
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <button type="button" onclick="
+    
+        second_counter.reset()
+        minute_counter.reset()
+        result.innerHTML = 'YOU CAN START AGAIN'
+    " style="
+        font-weight: 900;
+        font-size: 33px;
+        margin-bottom: 20px ;
+        border-radius: 20px;
+        padding:10px ;
+    ">Reset and Stop</button>
+    <div class="input">
+        <label for="sel_minutes">Minutes</label>
+        <select name="sel_minutes" id="sel_minutes" title="you can set the minutes" onchange="minute_counter.set(this.value)">
+            <script>
+                let sel_minutes = document.getElementById('sel_minutes')
+                let min_opt
+                for (let i = 0; i < 60; i++) {
+                    min_opt = document.createElement('option')
+                    min_opt.setAttribute('value',i)
+                    min_opt.innerHTML = i
+                    sel_minutes.appendChild(min_opt)
+                }
+            </script>
+        </select>
+        <label for="sel_seconds">Seconds</label>
+        <select name="sel_seconds" id="sel_seconds" title="you can set the seconds" onchange="second_counter.set(this.value)">
+            <script>
+                let sel_seconds = document.getElementById('sel_seconds')
+                let sec_opt
+                for ( let i = 0 ; i < 60 ; i++) {
+                    sec_opt = document.createElement('option')
+                    sec_opt.setAttribute('value',i)
+                    sec_opt.innerHTML = i
+                    sel_seconds.appendChild(sec_opt)
+                }
+
+            </script>
+        </select>
+        <button type="button" title="You can start here" onclick="
+            second_counter.set( sel_seconds.value )
+            minute_counter.set( sel_minutes.value )
+            second_counter.run()
+            result.innerHTML = 'TIMER IS RUNNING'
+        ">Start</button>
+    </div>
+    <div class="main">
+
+
+        <p class="number" id="min">
+            <script>
+                const mins = document.getElementById('min')
+                let minute_counter = new Minutes(0)
+                mins.appendChild(minute_counter.get())
+            </script>
+        </p>
+        <p class="point">:</p>
+        <p class="number" id="secs">
+            <script>
+                const secs = document.getElementById('secs')
+                let second_counter = new Seconds(0, minute_counter)
+                secs.appendChild(second_counter.get())
+
+            </script>
+        </p>
+    </div>
+    <p id="result">TIMER IS OFF</p>
+    <script>
+        let result = document.getElementById('result')
+        minute_counter.push_result_box(result)
+    </script>
+
+</body>
+
+</html>
