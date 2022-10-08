@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Clock</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.main {
+            display: flex;
+            gap: 10px;
+        }
+
+        p.number, p.points  {
+            font-size: 200px;
+            color :rgb(43, 43, 137) ;
+            text-shadow: 12px 12px 12px rgb(34, 12, 94);
+        }
+
+    </style>
+    <script>
+        class Seconds {
+            constructor(mins) {
+                this.mins = mins
+                this.node = document.createTextNode("00")
+                this.run()
+            }
+            run() {
+                setInterval(() => {
+                    this.seconds = new Date().getSeconds()
+                    if (this.seconds == 59) { this.mins.run() }
+                    this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
+                }, 1000)
+            }
+            get() { return this.node }
+        }
+        class Minutes {
+            constructor(hours) {
+                this.hours = hours
+                this.node = document.createTextNode("00")
+                this.run()
+
+            }
+            run() {
+                let i = 0
+                this.interval = setInterval(() => {
+                    i++
+                    this.minutes = new Date().getMinutes()
+                    if (this.minutes == 59) { this.hours.run() }
+                    this.node.textContent = String(this.minutes).length == 1 ? '0' + this.minutes : this.minutes
+                    if (i > 2) { clearInterval(this.interval) }
+                }, 1000)
+            }
+            get() { return this.node }
+        }
+        class Hours {
+            constructor() {
+                this.node = document.createTextNode("00")
+                this.run()
+            }
+            run() {
+                let i = 0
+                this.interval = setInterval(() => {
+                    i++
+                    this.hours = new Date().getHours()
+                    this.node.textContent = String(this.hours).length == 1 ? '0' + this.hours : this.hours
+                    if (i > 2) { clearInterval(this.interval) }
+                }, 1000)
+            }
+            get() { return this.node }
+        }
+    </script>
+
+</head>
+
+<body>
+    <script>
+        const hou_number = new Hours()
+        const min_number = new Minutes(hou_number)
+        const sec_number = new Seconds(min_number)
+
+
+    </script>
+    <div class="main">
+        <p class="number" id="hour">
+            <script>
+                const hour = document.getElementById('hour')
+                hour.appendChild(hou_number.get())
+            </script>
+        </p>
+        <p class="points">:</p>
+        <p class="number" id="min">
+            <script>
+                const min = document.getElementById('min')
+                min.appendChild(min_number.get())
+            </script>
+        </p>
+        <p class="points">:</p>
+        <p class="number" id="secs">
+            <script>
+                const secs = document.getElementById('secs')
+                secs.appendChild(sec_number.get())
+            </script>
+        </p>
+    </div>
+</body>
+
+</html>
