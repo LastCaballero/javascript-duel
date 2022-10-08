@@ -18,17 +18,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px ;
+            gap: 10px;
         }
 
         div.main {
             display: flex;
             gap: 10px;
         }
+
         div.input {
             display: flex;
-            gap: 10px ;
+            gap: 10px;
         }
+
         p.number {
             font-size: 55px;
         }
@@ -46,11 +48,11 @@
                 this.node = document.createTextNode(this.seconds)
                 this.node.textContent = String(seconds).length == 1 ? '0' + seconds : seconds
             }
-            set( seconds ) {
+            set(seconds) {
                 this.seconds = seconds
                 this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
             }
-            reset () {
+            reset() {
                 clearInterval(this.intervall)
                 this.seconds = 0
                 this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
@@ -59,10 +61,10 @@
                 this.intervall = setInterval(() => {
                     this.seconds--
                     this.node.textContent = String(this.seconds).length == 1 ? '0' + this.seconds : this.seconds
-                    if (this.seconds == 0) { 
+                    if (this.seconds == 0) {
                         this.seconds = 60
                         this.min_counter.down()
-                        if ( this.min_counter.getMinutes() == -1 ) {
+                        if (this.min_counter.getMinutes() == -1) {
                             this.min_counter.set(0)
                             this.reset()
                             result.innerHTML = 'OUT OF TIME'
@@ -92,7 +94,7 @@
             }
             get() { return this.node }
             getMinutes() { return this.minutes }
-            push_result_box (res_box) {
+            push_result_box(res_box) {
                 this.resultbox = res_box
             }
         }
@@ -116,26 +118,28 @@
     ">Reset and Stop</button>
     <div class="input">
         <label for="sel_minutes">Minutes</label>
-        <select name="sel_minutes" id="sel_minutes" title="you can set the minutes" onchange="minute_counter.set(this.value)">
+        <select name="sel_minutes" id="sel_minutes" title="you can set the minutes"
+            onchange="minute_counter.set(this.value)">
             <script>
                 let sel_minutes = document.getElementById('sel_minutes')
                 let min_opt
                 for (let i = 0; i < 60; i++) {
                     min_opt = document.createElement('option')
-                    min_opt.setAttribute('value',i)
+                    min_opt.setAttribute('value', i)
                     min_opt.innerHTML = i
                     sel_minutes.appendChild(min_opt)
                 }
             </script>
         </select>
         <label for="sel_seconds">Seconds</label>
-        <select name="sel_seconds" id="sel_seconds" title="you can set the seconds" onchange="second_counter.set(this.value)">
+        <select name="sel_seconds" id="sel_seconds" title="you can set the seconds"
+            onchange="second_counter.set(this.value)">
             <script>
                 let sel_seconds = document.getElementById('sel_seconds')
                 let sec_opt
-                for ( let i = 0 ; i < 60 ; i++) {
+                for (let i = 0; i < 60; i++) {
                     sec_opt = document.createElement('option')
-                    sec_opt.setAttribute('value',i)
+                    sec_opt.setAttribute('value', i)
                     sec_opt.innerHTML = i
                     sel_seconds.appendChild(sec_opt)
                 }
@@ -143,8 +147,8 @@
             </script>
         </select>
         <button type="button" title="You can start here" onclick="
-            second_counter.set( sel_seconds.value )
-            minute_counter.set( sel_minutes.value )
+            second_counter.set( Number.parseInt(sel_seconds.value) == 0 ? 59 : Number.parseInt(sel_seconds.value))
+            minute_counter.set( Number.parseInt(sel_seconds.value) == 0 ? Number.parseInt(sel_minutes.value)-1 : Number.parseInt(sel_minutes.value) )
             second_counter.run()
             result.innerHTML = 'TIMER IS RUNNING'
         ">Start</button>
