@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tabata 2</title>
+<style>
+	body, html {
+		height: 100% ;
+	}
+	body {
+		display: flex ;
+		flex-direction: column ;
+		align-items: center ;
+		justify-content: center ;
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	}
+	p,button {
+		font-size: 44px;
+	}
+	button{
+		padding: 10px ;
+	}
+
+</style>
+
+
+<script>
+	class Tabata{
+		node
+		info_node
+		rounds
+		number
+		intervall20
+		constructor( info_node ) {
+			this.node = document.createTextNode("20")
+			this.info_node = info_node
+			this.rounds = 8
+		}
+		
+		DoRound() {
+			this.number = 20
+			this.node.textContent = this.number
+			this.intervall20 = setInterval(
+				()=>{ 
+						this.number--
+						this.node.textContent = this.number
+						if(this.number == 0) { 
+							clearInterval(this.intervall20)
+							this.rounds--
+							this.info_node.setPause()
+							if(this.rounds == 0) {
+								this.info_node.setFinish()
+							}
+							if(this.rounds != 0){
+								this.DoRound()
+							}
+						}
+					},
+				1000
+			)
+		}
+		getNode() {
+			return this.node
+		}
+	}
+
+	class TabataInfo {
+		node
+		pause
+		constructor(){
+			this.node = document.createTextNode("Pause")
+			this.pause = true
+		}
+		getNode() { return this.node }
+		setPause() { 
+			this.pause = this.pause == true ? false: true
+			this.setContent()
+		}
+		setContent() {
+			this.node.textContent = this.pause == true ? "Pause": "Run"
+		}
+		setFinish() {
+			this.node.textContent = "Finished"
+		}
+	}
+
+</script>
+</head>
+
+<body>
+	
+		<p id="p_tab">
+			<script>
+				var info = new TabataInfo()
+				var tab = new Tabata( info )
+			</script>
+			<script>
+				document.getElementById('p_tab').appendChild( tab.getNode() )
+			</script>
+		</p>	
+		<p id="p_info"><script>
+				document.getElementById('p_info').appendChild( info.getNode() )
+			</script>
+		</p>
+		<button onclick="tab.DoRound()">
+			Start
+		</button>
+	
+	
+</body>
+
+</html>
