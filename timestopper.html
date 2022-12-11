@@ -91,16 +91,21 @@
             running
             stopped
             started
+            paused
             constructor(p_secs, p_mins) {
                 this.running = false
                 this.stopped = false
                 this.started = false
+                this.paused = false
                 this.pointer_to_seconds = p_secs
                 this.pointer_to_minutes = p_mins
                 this.number = 0
                 this.textnode = document.createTextNode(this.number)
             }
             runCycle() {
+                if( this.paused == true ) {
+                    return
+                }
                 this.started = true
                 if (this.running == true || this.stopped == true)
                     window.location.reload()
@@ -120,7 +125,9 @@
                 if ( this.running == true ) {
                     clearInterval(this.intervall)
                     this.running = false
+                    this.paused = true
                 } else {
+                    this.paused = false
                     this.runCycle()
                     this.running = true
                 }
