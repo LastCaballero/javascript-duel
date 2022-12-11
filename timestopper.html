@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeStopper</title>
+    <style>
+        body {
+            margin: 45px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        div.numbers {
+            display: grid;
+            grid-template-columns: 100px 100px 160px 100px 100px;
+            grid-template-rows: 80px 100px;
+            gap: 22px;
+        }
+
+        div.numbers p {
+            text-align: center;
+            font-size: 70px;
+            margin: 0;
+            padding: 0;
+        }
+
+        p.digit {
+            font-weight: 900;
+            text-align: right;
+        }
+
+        button {
+            background-color: rgb(195, 81, 81);
+            color: azure;
+            border-radius: 12px;
+            font-size: 45px;
+            font-weight: 900;
+            margin: 0;
+        }
+    </style>
+    <script>
+        class Minute {
+            textnode
+            number
+            constructor() {
+                this.number = 0
+                this.textnode = document.createTextNode(this.number)
+            }
+            numberUp() {
+                this.number++
+                this.textnode.textContent = this.number
+            }
+            getNode() { return this.textnode }
+            reset() {
+                this.number = 0
+                this.textnode.textContent = number
+            }
+        }
+        class Second {
+            minute_node
+            textnode
+            number
+            constructor(m_node) {
+                this.minute_node = m_node
+                this.number = 0
+                this.textnode = document.createTextNode(this.number)
+            }
+            numberUp() {
+                this.number++
+                this.textnode.textContent = this.number
+                if (this.number == 60) {
+                    this.number = 0
+                    this.textnode.textContent = this.number
+                    this.minute_node.numberUp()
+                }
+            }
+            getNode() { return this.textnode }
+            reset() {
+                this.number = 0
+                this.textnode.textContent = number
+            }
+        }
+        class Nano {
+            pointer_to_seconds
+            pointer_to_minutes
+            textnode
+            number
+            intervall
+            running
+            stopped
+            started
+            constructor(p_secs, p_mins) {
+                this.running = false
+                this.stopped = false
+                this.started = false
+                this.pointer_to_seconds = p_secs
+                this.pointer_to_minutes = p_mins
+                this.number = 0
+                this.textnode = document.createTextNode(this.number)
+            }
+            runCycle() {
+                this.started = true
+                if (this.running == true || this.stopped == true)
+                    window.location.reload()
+                this.intervall = setInterval(() => { this.countUp() }, 100)
+                this.running = true
+                this.stopped = false
+
+            }
+            stopCycle() {
+                clearInterval(this.intervall)
+                this.stopped = true
+            }
+            pause_or_resume_cycle() {
+                if( this.started == false ){
+                    return
+                }
+                if ( this.running == true ) {
+                    clearInterval(this.intervall)
+                    this.running = false
+                } else {
+                    this.runCycle()
+                    this.running = true
+                }
+
+
+            }
+            countUp() {
+                this.number++
+                if (this.number == 10) {
+                    this.number = 0
+                    this.textnode.textContent = this.number
+                    this.pointer_to_seconds.numberUp()
+                }
+                this.textnode.textContent = this.number
+            }
+            getNode() { return this.textnode }
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div class="numbers">
+
+        <p class="digit" id="p_min"></p>
+        <p>:</p>
+        <p class="digit" id="p_secs"></p>
+        <p>:</p>
+        <p class="digit" id="p_nanos"></p>
+        <script>
+            const paragraph_nanos = document.getElementById('p_nanos')
+            const paragraph_seconds = document.getElementById('p_secs')
+            const paragraph_minutes = document.getElementById('p_min')
+
+            const mino = new Minute()
+            const seco = new Second(mino)
+            const nano = new Nano(seco)
+
+            paragraph_nanos.appendChild(nano.getNode())
+            paragraph_seconds.appendChild(seco.getNode())
+            paragraph_minutes.appendChild(mino.getNode())
+
+
+
+        </script>
+        <button style="grid-column: span 2 ;" onclick="nano.runCycle()">(Re)start</button>
+        <button onclick="nano.pause_or_resume_cycle()">Pause</button>
+        <button style="grid-column: span 2 ;" onclick="nano.stopCycle()">Stop</button>
+    </div>
+</body>
+
+</html>
