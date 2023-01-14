@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <style>
+        body {
+            margin: 45px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #data p {
+            text-align: right;
+        }
+    </style>
+    <script>
+        let HourlyResponse
+
+        function GetRequest() {
+
+            let request = 'https://api.open-meteo.com/v1/forecast?latitude=51.59&longitude=8.17&hourly=temperature_2m,cloudcover,windspeed_10m,rain&current_weather=true&'
+
+            let today = new Date()
+            let start = today.toJSON().split('T')[0]
+
+            today.setDate(today.getDate() + 7)
+            let later = today
+            let end = later.toJSON().split('T')[0]
+
+            return request + 'start_date=' + start + '&end_date=' + end
+
+        }
+
+        function TakeResponse() {
+            HourlyResponse = JSON.parse(this.responseText)
+            let datadiv = document.getElementById('data')
+            for (let index = 0; index < HourlyResponse.hourly.time.length; index++) {
+                let time = HourlyResponse.hourly.time[index];
+                let temperature_2m = HourlyResponse.hourly.temperature_2m[index];
+                let cloudcover = HourlyResponse.hourly.cloudcover[index];
+                let windspeed_10m = HourlyResponse.hourly.windspeed_10m[index];
+                let rain = HourlyResponse.hourly.rain[index];
+                [time, temperature_2m, cloudcover, windspeed_10m, rain].forEach(
+                    dat => {
+                        let p = document.createElement('p')
+                        p.innerHTML = dat
+                        datadiv.appendChild(p)
+                    }
+                )
+            }
+        }
+
+        function ExecuteRequest(url) {
+            const req = new XMLHttpRequest();
+            req.addEventListener("loadend", TakeResponse)
+            req.open("GET", url, true);
+            req.send();
+        }
+
+        ExecuteRequest(GetRequest())
+
+
+    </script>
+</head>
+
+<body>
+    <div id="data" style="
+            display: grid;
+            grid-template-columns: 15% 15% 15% 15% 15%;
+            gap: 4px ;
+            
+        ">
+        <p>time</p>
+        <p>temperature 2m</p>
+        <p>cloudcover</p>
+        <p>windspeed 10m</p>
+        <p>rain</p>
+    </div>
+</body>
+
+</html>
