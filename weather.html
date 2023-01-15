@@ -37,12 +37,17 @@
         function TakeResponse() {
             HourlyResponse = JSON.parse(this.responseText)
             let datadiv = document.getElementById('data')
+            let time
+            let temperature_2m
+            let cloudcover
+            let windspeed_10m
+            let rain
             for (let index = 0; index < HourlyResponse.hourly.time.length; index++) {
-                let time = HourlyResponse.hourly.time[index];
-                let temperature_2m = HourlyResponse.hourly.temperature_2m[index];
-                let cloudcover = HourlyResponse.hourly.cloudcover[index];
-                let windspeed_10m = HourlyResponse.hourly.windspeed_10m[index];
-                let rain = HourlyResponse.hourly.rain[index];
+                time = HourlyResponse.hourly.time[index];
+                temperature_2m = HourlyResponse.hourly.temperature_2m[index];
+                cloudcover = HourlyResponse.hourly.cloudcover[index];
+                windspeed_10m = HourlyResponse.hourly.windspeed_10m[index];
+                rain = HourlyResponse.hourly.rain[index];
                 [time, temperature_2m, cloudcover, windspeed_10m, rain].forEach(
                     dat => {
                         let p = document.createElement('p')
