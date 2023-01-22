@@ -28,6 +28,7 @@
             display: grid ;
             grid-template-columns: 1fr 2fr 1fr 1fr ;
             gap: 3px ;
+            overflow: scroll;
             margin-top: 3px ;
             margin-bottom: 3px ;
         }
@@ -90,7 +91,7 @@
     </script>
 </head>
 
-<body>
+<body onload="text=''">
     <div>
         <p><input oninput="text=this.value" id="text_input" size="27" style="
             font-size: 23px;
