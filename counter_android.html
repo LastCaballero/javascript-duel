@@ -26,7 +26,7 @@
         }
         div.counterbox {
             display: grid ;
-            grid-template-columns: 1fr 2fr 1fr ;
+            grid-template-columns: 1fr 2fr 1fr 1fr ;
             gap: 3px ;
             margin-top: 3px ;
             margin-bottom: 3px ;
@@ -47,6 +47,9 @@
                 this.node_text = document.createTextNode(this.text + ': ')
                 this.node_number = document.createTextNode(this.number)
                 this.p.append(this.node_text, this.node_number)
+                this.p.addEventListener('click',() => {
+                    this.node_text.textContent = prompt('new description') + ': '
+                })
             }
             numberUp() {
                 this.number++
@@ -56,8 +59,10 @@
                 this.number--
                 this.node_number.textContent = this.number
             }
+           
             Get() { return this.p }
         }
+        // Counter Button with Action
         let cba = (inner, action) => {
             let button = document.createElement('button')
             button.innerHTML = inner
@@ -73,9 +78,11 @@
 
         function AddCounter() {
             let cp = new CounterParagraph( text )
-            let plus = cba( 'plus', () => cp.numberUp() )
-            let minus = cba( 'minus', () => cp.numberDown() )
+            let plus = cba( 'Plus', () => cp.numberUp() )
+            let minus = cba( 'Minus', () => cp.numberDown() )
             let div = divPlus( plus, cp.Get(), minus )
+            let del = cba( 'Del', () => div.remove() )
+            div.appendChild( del )
             root.append(div)
         }
 
