@@ -9,7 +9,6 @@ class Container {
 
 
 class CounterButton extends Container{
-    container
     constructor(text, clickAction){
         super()
         this.container = document.createElement('button')
@@ -19,7 +18,6 @@ class CounterButton extends Container{
 }
 
 class CounterParagraph extends Container{
-    container
     num
     constructor(num){
         super()
