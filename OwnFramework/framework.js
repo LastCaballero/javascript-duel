@@ -1,17 +1,21 @@
 
 class Container {
     container
-    constructor(){}
+    constructor(what){
+        this.container = document.createElement(what)
+    }
     Paint(){
         return this.container
+    }
+    UpDate(){
+        
     }
 }
 
 
 class CounterButton extends Container{
     constructor(text, clickAction){
-        super()
-        this.container = document.createElement('button')
+        super('button')
         this.container.innerHTML = text
         this.container.onclick = clickAction
     }
@@ -20,8 +24,7 @@ class CounterButton extends Container{
 class CounterParagraph extends Container{
     num
     constructor(num){
-        super()
-        this.container = document.createElement('p')
+        super('p')
         this.num = num
         this.container.innerHTML = this.num
     }
