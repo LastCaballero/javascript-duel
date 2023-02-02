@@ -2,7 +2,7 @@
 class Container {
     container
     constructor(){}
-    Get(){
+    Paint(){
         return this.container
     }
 }
