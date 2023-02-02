@@ -28,5 +28,9 @@ class CounterParagraph extends Container{
     Up(){
         this.num++
         this.container.innerHTML = this.num
+    }
+    Down(){
+        this.num--
+        this.container.innerHTML = this.num
     }   
 }
