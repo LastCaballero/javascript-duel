@@ -44,22 +44,24 @@
         let RUNNING = false
         let RUNNINGINTERVAL
         function RunTimer(){
-            RUNNING = true
             let mins
             let secs
             RUNNINGINTERVAL = setInterval(() => {
-                Result.innerHTML = 'TIMER IS RUNNING'
                 mins = Number.parseInt( Mins.innerHTML )
                 secs = Number.parseInt( Secs.innerHTML )
                 if (secs == 0 && mins == 0) {
-                    RUNNING = false 
+                    RUNNING = false
+                    clearInterval(RUNNINGINTERVAL)
                     return
                 }
                 if (secs == 0 && mins > 0) {
                     secs = 60
                     mins--
+                    RUNNING = true
+                    Result.innerHTML = 'TIMER IS RUNNING'
                 }
                 secs--
+                
                 if (mins == 0 && secs == 0) {
                     clearInterval(RUNNINGINTERVAL)
                     Result.innerHTML = 'FINISHED'
