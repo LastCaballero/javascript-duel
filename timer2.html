@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        div.main {
+            display: flex;
+            gap: 10px;
+        }
+
+        div.input {
+            display: flex;
+            gap: 10px;
+        }
+
+        p.number {
+            font-size: 55px;
+        }
+
+        p.point {
+            font-size: 55px;
+        }
+    </style>
+    
+    <script>
+        let RUNNING = false
+        let RUNNINGINTERVAL
+        function RunTimer(){
+            RUNNING = true
+            let mins
+            let secs
+            RUNNINGINTERVAL = setInterval(() => {
+                Result.innerHTML = 'TIMER IS RUNNING'
+                mins = Number.parseInt( Mins.innerHTML )
+                secs = Number.parseInt( Secs.innerHTML )
+                if (secs == 0 && mins == 0) {
+                    RUNNING = false 
+                    return
+                }
+                if (secs == 0 && mins > 0) {
+                    secs = 60
+                    mins--
+                }
+                secs--
+                if (mins == 0 && secs == 0) {
+                    clearInterval(RUNNINGINTERVAL)
+                    Result.innerHTML = 'FINISHED'
+                    Mins.innerHTML = '00'
+                    Secs.innerHTML = '00'
+                    RUNNING = false
+                    document.querySelectorAll('select').forEach(select => select.selectedIndex=0 )
+                    return
+                }
+                if(secs == 0) {
+                    secs = 60
+                    mins --
+                }
+                Mins.innerHTML = mins.toString().length == 1 ? '0' + mins : mins
+                Secs.innerHTML = secs.toString().length == 1 ? '0' + secs : secs
+                    
+            }, 1000);
+        }
+        function StopAndReset() {
+                Mins.innerHTML = '00'
+                Secs.innerHTML = '00'
+                document.querySelectorAll('select').forEach(select => select.selectedIndex=0 )
+                RUNNING = false
+                Result.innerHTML = 'TIMER IS OFF'
+                clearInterval(RUNNINGINTERVAL)
+        }
+    </script>
+
+</head>
+
+<body>
+    <button onclick="StopAndReset()" style="
+        font-weight: 900;
+        font-size: 33px;
+        margin-bottom: 20px ;
+        border-radius: 20px;
+        padding:10px ;
+    ">Reset and Stop</button>
+    <div class="input">
+        <label for="sel_minutes">Minutes</label>
+        <select onchange="if( RUNNING == false ) Mins.innerHTML=this.value" title="you can set the minutes">
+            <script>
+                for (let i = 0; i <= 60; i++) {
+                    document.write(`<option>${i.toString().length == 1 ? '0' + i : i}</option>`)
+                }
+            </script>
+        </select>
+        <label for="sel_seconds">Seconds</label>
+        <select title="you can set the seconds"
+            onchange="if( RUNNING == false ) Secs.innerHTML=this.value">
+            <script>
+                for (let i = 0; i <= 60; i++) {
+                    document.write(`<option>${i.toString().length == 1 ? '0' + i : i}</option>`)
+                }
+            </script>
+        </select>
+        <button type="button" title="You can start here" onclick="RunTimer()">Start</button>
+    </div>
+    <div class="main">
+        <p class="number" id="mins">00</p>
+        <p class="point">:</p>
+        <p class="number" id="secs">00</p>
+    </div>
+    <p id="result">TIMER IS OFF</p>
+    
+    <script>
+        const Mins = document.querySelector('#mins')
+        const Secs = document.querySelector('#secs')
+        const Result = document.querySelector('#result')
+        document.querySelectorAll('select').forEach(select => select.selectedIndex=0 )
+    </script>
+</body>
+
+</html>
