@@ -1,24 +1,19 @@
+let dc = ( what ) => document.createElement( what )
 
 class SmartBox {
     Box
-    constructor(what, vars){
-        this.Box = document.createElement(what)
-        Object.assign( this.Box, vars ) 
-        this.Box.className = "oop" + this.Box.tagName 
+    constructor( what ){
+        this.Box = dc( what )
     }
     Get(){
         return this.Box
     }
-    
 }
 
-class ActionBox extends SmartBox {
-    constructor( what, vars, actions ){
-        super( what, vars )
-        this.Enhance( actions )
-    }
-    Enhance( actions ){
-        Object.assign( this.Box, actions )
+class ActionBox{
+    constructor( what, action ){
+        super( what )
+        Object.assign( this.Box, action)
     }
 }
 
