@@ -10,14 +10,14 @@ class SmartBox {
     }
 }
 
-class ActionBox{
+class ActionBox extends SmartBox{
     constructor( what, action ){
         super( what )
         Object.assign( this.Box, action)
     }
 }
 
-class NumberBox{
+class NumberBox extends SmartBox{
     Number
     constructor( what, number ){
         super(what)
@@ -33,7 +33,7 @@ class NumberBox{
     }
 }
 
-class HourBox{
+class HourBox extends SmartBox{
     constructor(what){
         super(what)
         this.Cycle()
@@ -43,7 +43,7 @@ class HourBox{
     }
 }
 
-class MinuteBox{
+class MinuteBox extends SmartBox{
     constructor(what){
         super(what)
         this.Cycle()
@@ -53,7 +53,7 @@ class MinuteBox{
     }
 }
 
-class SecondBox{
+class SecondBox extends SmartBox{
     constructor(what){
         super(what)
         this.Cycle()
