@@ -33,3 +33,32 @@ class NumberBox{
     }
 }
 
+class HourBox{
+    constructor(what){
+        super(what)
+        this.Cycle()
+    }
+    Cycle(){
+        setInterval(()=>{ this.Box.innerHTML = new Date().getHours() },1000)
+    }
+}
+
+class MinuteBox{
+    constructor(what){
+        super(what)
+        this.Cycle()
+    }
+    Cycle(){
+        setInterval(()=>{ this.Box.innerHTML = new Date().getMinutes() },1000)
+    }
+}
+
+class SecondBox{
+    constructor(what){
+        super(what)
+        this.Cycle()
+    }
+    Cycle(){
+        setInterval(()=>{ this.Box.innerHTML = new Date().getSeconds() },1000)
+    }
+}
