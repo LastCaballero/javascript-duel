@@ -34,6 +34,18 @@ class NumberBox extends SmartBox{
     }
 }
 
+class CycleBox extends SmartBox {
+    constructor(what, cycleAction, interVal ){
+        super(what)
+        this.Cycle( cycleAction, interVal )
+    }
+    Cycle( cycleAction, interVal ){
+        setInterval(()=>{
+            this.Box.innerHTML = cycleAction
+        }, interVal)
+    }
+}
+
 class HourBox extends SmartBox{
     constructor(what){
         super(what)
