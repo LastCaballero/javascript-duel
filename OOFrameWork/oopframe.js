@@ -4,6 +4,7 @@ class SmartBox {
     Box
     constructor( what ){
         this.Box = dc( what )
+        this.Box.className = 'oo' + this.Box.tagName
     }
     Get(){
         return this.Box
