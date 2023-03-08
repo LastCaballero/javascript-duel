@@ -17,3 +17,19 @@ class ActionBox{
     }
 }
 
+class NumberBox{
+    Number
+    constructor( what, number ){
+        super(what)
+        this.Number = number
+    }
+    Up(){
+        this.Number++
+        this.Box.innerHTML = this.Number
+    }
+    Down(){
+        this.Number--
+        this.Box.innerHTML = this.Number
+    }
+}
+
