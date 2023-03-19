@@ -68,28 +68,11 @@
         }
         
         function SortSliders() {
-            let old = sliders.childNodes
-            let prepare = []
-            old.forEach(element => {
-                prepare.push( element )
-            });
-            prepare = prepare.sort(
-                (a,b) => {
-                    let n1 = Number.parseInt( a.childNodes[2].innerHTML )
-                    let n2 = Number.parseInt( a.childNodes[2].innerHTML )
-                    if ( n1 < n2 ) {
-                        return -1
-                    }
-                    if ( n1 > n2 ) {
-                        return 1
-                    } else {
-                        return 0
-                    }
-                }
-            
-                )
-            old.forEach(e => e.remove())
-            prepare.forEach(e => sliders.append(e) )
+            let old = [ ...sliders.childNodes].sort( (a,b) => {
+                return a.childNodes[2].innerHTML - b.childNodes[2].innerHTML
+             } ).reverse()
+            sliders.childNodes.forEach(e => e.remove())
+            old.forEach( e => sliders.append(e) )
         }
     </script>
 </head>
