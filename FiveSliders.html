@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Sliders</title>
+    <style>
+        
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 45px ;
+        }
+
+        .sliders {
+            display: grid;
+            grid-template-columns: 2fr 3fr 2fr 1fr;
+            vertical-align: middle;
+            gap: 10px ;
+        }
+        div.ButtonBox{
+            display: flex;
+            gap: 15px ;
+        }
+
+        .right {
+            text-align: right;
+        }
+        .cross {
+            text-align: right ;
+        }
+        
+    </style>
+    <script>
+        
+        function AppendSlider(){
+            
+            const div = document.createElement('div')
+            div.className = 'sliders'
+            
+            const left = document.createElement('p')
+            left.className = 'left'
+            left.innerHTML = prompt('name for new priority')
+            left.onclick = () => { left.innerHTML = prompt('rename the priority') }
+
+            const input = document.createElement('input')
+            input.setAttribute('type', 'range')
+            input.setAttribute('value', 0)
+            input.setAttribute('min', 0)
+            input.setAttribute('max', 10)
+            input.oninput = () => { input.nextElementSibling.innerHTML = input.value }
+            
+            const right = document.createElement('p')
+            right.className = 'right'
+            right.innerHTML = 0
+
+            const cross = document.createElement('p')
+            cross.className = 'cross'
+            cross.innerHTML = '&cross;'
+            cross.onclick = () => { div.remove() }
+
+            div.append( left, input, right, cross )
+            sliders.append(div)
+
+            
+        }
+        
+        function SortSliders() {
+            let old = sliders.childNodes
+            let prepare = []
+            old.forEach(element => {
+                prepare.push( element )
+            });
+            prepare = prepare.sort(
+                (a,b) => {
+                    let n1 = Number.parseInt( a.childNodes[2].innerHTML )
+                    let n2 = Number.parseInt( a.childNodes[2].innerHTML )
+                    if ( n1 < n2 ) {
+                        return -1
+                    }
+                    if ( n1 > n2 ) {
+                        return 1
+                    } else {
+                        return 0
+                    }
+                }
+            
+                )
+            old.forEach(e => e.remove())
+            prepare.forEach(e => sliders.append(e) )
+        }
+    </script>
+</head>
+
+<body>
+        <h1>Priorities</h1>
+        <div class="ButtonBox">
+            
+            <button onclick="SortSliders()">Sort</button>
+            <button onclick="AppendSlider()">+</button>
+        </div>
+        <div id="sliders"></div>
+        <script>
+            const sliders = document.getElementById('sliders')
+        </script>
+    
+</body>
+
+</html>
