@@ -1,11 +1,9 @@
 
 class Capsule {
     Container
-    constructor(what, style) {
+    constructor(what) {
         this.Container = document.createElement(what)
-        if(style != null) {
-            this.Container.style.cssText = style
-        }
+        
     }
 }
 
