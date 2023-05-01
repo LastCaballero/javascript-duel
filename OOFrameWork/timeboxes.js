@@ -3,7 +3,6 @@ class Capsule {
     Container
     constructor(what) {
         this.Container = document.createElement(what)
-        
     }
 }
 
@@ -55,5 +54,28 @@ class HourCapsule extends Capsule {
             let text = new Date().getHours()
             this.TextNode.textContent = String(text).length == 1 ? '0' + String(text) : text
         }, 1000)
+    }
+}
+
+class TimeButton {
+    Button
+    Stamps
+    constructor() {
+        this.Button = document.createElement('button')
+        this.Button.innerHTML = new Date().toLocaleTimeString()
+
+        this.Stamps = []
+        this.Button.onclick = () => { this.Stamps.append(new Date()) }
+    }
+    GetButton() { return this.Button }
+    GetStamps() { return this.Stamps }
+    GetCalculated(){
+        return Math.floor(this.Stamps.reduce((acc, date, index) => {
+            if (index === 0) {
+              return 0;
+            }
+            const diffInMilliseconds = date - this.Stamps[index - 1];
+            return acc + diffInMilliseconds;
+          }, 0) / 1000 );
     }
 }
