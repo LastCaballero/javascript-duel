@@ -65,7 +65,10 @@ class TimeButton {
         this.Button.innerHTML = new Date().toLocaleTimeString()
 
         this.Stamps = []
-        this.Button.onclick = () => { this.Stamps.append(new Date()) }
+        this.Button.onclick = () => { 
+            this.Stamps.append(new Date()) 
+            this.Button.innerHTML = new Date().toLocaleTimeString()
+        }
     }
     GetButton() { return this.Button }
     GetStamps() { return this.Stamps }
