@@ -51,8 +51,9 @@ class NumberBox extends SmartBox{
     }
 }
 
-function AttachTo(where, what){
-    document.querySelector(where).append( what )
+function AttachTo(where, ...what){
+    const Where = document.querySelector(where)
+    what.forEach( ( w )=> { Where.append( w ) } )
 }
 
 
