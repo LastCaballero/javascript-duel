@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="body.css">
     <link rel="stylesheet" href="searchbox.css">
     <title>Comfortable Search</title>
+    <script src="opener.js"></script>
 </head>
 
 <body>
@@ -24,8 +25,17 @@
                 <option value="duck">DuckDuckGo</option>
             </select>
         </p>
-        <p><button>Open Window</button></p>
+        <p>
+            <button onclick="openWindow(what.value , where.value, engine.value)">
+                Open Window
+            </button>
+        </p>
     </div>
+    <script>
+        const what = document.getElementById('what')
+        const where = document.getElementById('where')
+        const engine = document.getElementById('engine')
+    </script>
 </body>
 
 </html>
