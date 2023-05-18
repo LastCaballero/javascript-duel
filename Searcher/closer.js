@@ -3,7 +3,7 @@
 function closeAllWindows() {
     WindowList.forEach((win) => {
         win.close()
-        WindowList.pop()
+        WindowList = []
     })
 }
 

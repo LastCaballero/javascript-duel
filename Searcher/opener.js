@@ -1,6 +1,6 @@
 
 
-const WindowList = []
+let WindowList = []
 const UrlList = []
 
 const bing_str = 'https://www.bing.com/search?q='
@@ -25,6 +25,7 @@ function openWindow(what, where, engine){
             break;
     }
     target = encodeURI(eng + '+' + what + '+' + where)
-    WindowList.push(window.open(target))
+    let topush = window.open(target)
+    WindowList.push(topush)
     UrlList.push(decodeURI(target))
 }
