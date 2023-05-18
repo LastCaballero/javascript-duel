@@ -1,10 +1,10 @@
 
 
 function closeAllWindows() {
-    WindowList.forEach((win) => {
-        win.close()
-        WindowList = []
-    })
+    while (WindowList.length != 0){
+        WindowList.forEach( win => win.close() )
+        WindowList.pop()
+    }
 }
 
 function closeSelectedWindow(index) {
