@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="searchbox.css">
     <title>Comfortable Search</title>
     <script src="opener.js"></script>
+    <script src="closer.js"></script>
 </head>
 
 <body>
@@ -28,6 +29,11 @@
         <p>
             <button onclick="openWindow(what.value , where.value, engine.value)">
                 Open Window
+            </button>
+        </p>
+        <p>
+            <button onclick="closeAllWindows()">
+                Close All Windows
             </button>
         </p>
     </div>
