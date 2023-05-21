@@ -1,0 +1,19 @@
+div.searchbox{
+    display: flex;
+    gap: 20px ;
+}
+
+div.searchbox p,select , select option, input, button{
+    font-size: 16px;
+    padding: 10px ;
+    border-radius: 12px;
+}
+
+div.searchbox p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
