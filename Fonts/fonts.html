@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/inputs.css">
+
+	<title>HTML Page with Input Elements</title>
+	<script src="javascript/arrays.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div>
+			<div class="inputs">
+				<label for="font-size">Font Size:</label>
+				<input type="range" id="font-size" name="font-size" min="10" max="50" value="16">
+			</div>
+
+			<div class="inputs">
+				<label for="color">Color:</label>
+				<input type="color" id="color" name="color" value="#000000">
+
+			</div>
+			<div class="inputs">
+				<label for="bold">Bold:</label>
+				<input type="checkbox" id="bold" name="bold">
+
+			</div>
+			<div class="inputs">
+				<label for="italic">Italic:</label>
+				<input type="checkbox" id="italic" name="italic">
+			</div>
+
+			<div class="inputs">
+				<label for="shadow">Shadow:</label>
+				<input type="range" id="shadow" name="shadow" min="-10" max="10" value="0">
+			</div>
+			<div class="inputs">
+				<label for="shadow-color">Shadow Color:</label>
+				<input type="color" id="shadow-color" name="shadow-color" value="#000000">
+			</div>
+			<div class="inputs">
+				<label for="font-family">Font Family:</label>
+				<select id="font-family" name="font-family">
+
+
+				</select>
+			</div>
+		</div>
+		<div>
+			<input type="text" value="Some Text" title="text" oninput="paragraph.innerHTML=this.value">
+			<p id="paragraph" class="shadowed-text">Some Text</p>
+		</div>
+
+	</div>
+
+	<script src="javascript/consts.js"></script>
+	<script src="javascript/functions.js">
+
+
+
+	</script>
+
+</body>
+
+</html>

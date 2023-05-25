@@ -1,0 +1,41 @@
+input[type="text"] {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+}
+
+input[type="color"] {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+}
+
+input[type="range"] {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+}
+
+input[type="checkbox"] {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+}
+
+input[type="shadow"] {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+}
+
+div.inputs {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    margin: 20px;
+}

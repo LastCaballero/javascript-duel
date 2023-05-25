@@ -1,0 +1,27 @@
+body {
+    margin: 45px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: none;
+}
+
+option,
+select {
+    font-size: 25px;
+}
+
+.shadowed-text {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+div.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
