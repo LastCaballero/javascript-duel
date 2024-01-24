@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+</head>
+<style>
+    body {
+        margin: 45px ;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+</style>
+<script>
+    function Add( ) {
+        let item = document.createElement('li')
+        item.innerText = what.value 
+        what.value = ''
+        item.onclick = () => { item.remove() }
+        list.append( item )
+    }
+</script>
+<body>
+    <p>
+        <input type="text" name="item" id="item">
+        <button onclick="Add()">Add</button>
+    </p>
+    <ul id="list">
+
+    </ul>
+    
+    <script>
+        let what = document.getElementById('item')
+        let list = document.getElementById('list')
+    </script>
+    
+</body>
+</html>
