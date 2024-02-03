@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        body,html {height: 100% ;}
+        body {
+            display: grid;
+            margin: 0px ;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 900;
+        }
+        div p {
+            font-size: 120px;
+        }
+    </style>
+    <script>
+        function format_digit( number ){
+            return String(number).length == 1 ? '0' + String(number) : String(number) 
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex; width: 50%; place-self: center;justify-content: center;">
+        <p id="hours">
+            <script>
+                let hours  = document.getElementById('hours')
+                window.setInterval(
+                    () => {
+                        hours.innerText = format_digit( new Date().getHours() )
+                    }
+                    ,1000
+                )
+            </script>
+        </p>
+        <p>:</p>
+        <p id="minutes">
+            <script>
+                let minutes  = document.getElementById('minutes')
+                window.setInterval(
+                    () => {
+                        minutes.innerText = format_digit( new Date().getMinutes() )
+                    }
+                    ,1000
+                )
+
+            </script>
+        </p>
+        <p>:</p>
+        <p id="seconds">
+            <script>
+                let seconds = document.getElementById('seconds')
+                window.setInterval(
+                    () => {
+                        seconds.innerText = format_digit( new Date().getSeconds() )
+                    }
+                    ,1000
+                )
+            </script>
+        </p>
+        
+    </div>
+    
+</body>
+</html>
