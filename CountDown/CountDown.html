@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountDown</title>
+</head>
+<script>
+    let display
+    let interval
+
+    function runCountDown() {
+        interval = window.setInterval(() => {
+            if ( display.innerText > 0 ) {
+                display.innerText --
+            } else {
+                window.clearInterval(interval)
+            }
+        }, 1000)
+    }
+    function stopCountDown() {
+        window.clearInterval(interval)
+    }
+    function resetCountDown() {
+        display.innerText = 20
+    }
+</script>
+<style>
+    body {
+        margin: 45px ;
+    }
+    div.buttons {
+        display: flex;
+        gap: 5px ;
+    }
+    p#display {
+        padding-left: 30px ;
+    }
+</style>
+<body>
+    <p id="display">
+        <script>
+            display = document.getElementById('display')
+            display.innerText = 20
+        </script>
+    </p>
+    <div class="buttons">
+        <p>
+            <button onclick="runCountDown()">Run CountDown</button>
+        </p>
+        <p>
+            <button onclick="resetCountDown()">Reset CountDown</button>
+        </p>
+        <p>
+            <button onclick="stopCountDown()">Stop CountDown</button>
+        </p>
+    </div>
+    
+
+</body>
+
+</html>
